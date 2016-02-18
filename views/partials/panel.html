@@ -1,0 +1,8 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ convertToDateFn({wdt: weatherObject.dt }) | date: dateFormat }}</h3>
+    </div>
+    <div class="panel-body">
+        Daytime temperature: {{ convertToStandartFn({dTemp : weatherObject.temp.day }) }}
+    </div>
+</div>
