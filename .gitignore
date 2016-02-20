@@ -1,2 +1,3 @@
 .DS_Store
 js/vendor
+node_modules
