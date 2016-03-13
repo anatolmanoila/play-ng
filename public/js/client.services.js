@@ -1,14 +1,38 @@
 //==== SERVICES
-app.service('cityService', function() {
-    this.city = 'New York, NY';
-});
+'use strict';
 
-app.service('weatherService', ['$resource', function($resource) {
-    this.getWeather = function(city, days) {
-        var weatherAPI = $resource("http://api.openweathermap.org/data/2.5/forecast/daily/?q=Bucharest,us&appid=44db6a862fba0b067b1930da0d769e98",
-                    {callback: 'JSON_CALLBACK'},
-                    {get: { method: 'JSONP' }});
+app.factory('AuthService', ['$http', function($http) {
+  return {
+    login: function(credentials) {
+      return $http.post('/api/login', credentials);
+    },
+    logout: function() {
+      return $http.get('/api/logout');
+    }
+  };
+}]);
+app.factory('bookingsFactory', ['$http', function($http) {
+    return {
+        getBookings: function() {
+            return $http.get('/api/bookings');
+        },
+        saveBooking: function(pageData) {
+            var id = pageData._id;
 
-        return weatherAPI.get({ q: city, cnt: days });
+            if(id === 0) {
+                return $http.post('/api/bookings/add', pageData);
+            } else {
+                return $http.post('/api/bookings/update', pageData);
+            }
+        },
+        deleteBooking: function(id) {
+            return $http.get('/api/bookings/delete/' + id);
+        },
+        getAdminBookingContent: function(id) {
+            return $http.get('/api/bookings/admin-details/' + id);
+        },
+        getBookingContent: function(url) {
+            return $http.get('/api/bookings/details/' + url);
+        }
     };
 }]);

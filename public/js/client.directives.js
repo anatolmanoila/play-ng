@@ -2,7 +2,7 @@
 app.directive('dhxScheduler', function() {
     return {
         restrict: 'A',
-        templateUrl: '../views/partials/dhxcalendar.html',
+        templateUrl: '../partials/_dhxcalendar.html',
         scope: false,
         transclude: true,
         link: function(scope, element, attrs, controller) {
@@ -67,3 +67,39 @@ app.directive('dhxTemplate', ['$filter', function($filter){
     }
   };
 }]);
+
+app.directive('myNgClick', function() {
+  return function(scope, element, attributes) {
+    element.on('click', function() {
+      scope.$eval(attributes.myNgClick);
+      //scope.$apply();
+      console.log('Counter is ' + scope.counter);
+    });
+  };
+});
+//Carousel
+app.directive('myBgImage', function() {
+  return function(scope, element, attributes) {
+    scope.$watch(attributes.myBgImage, function(newVal, oldVal) {
+      element.css('background-image', 'url(' + newVal + ')');
+    });
+  };
+});
+
+app.directive('ngSwipeLeft', function() {
+  return function(scope, element, attributes) {
+    Hammer(element).on('swipeleft', function() {
+      scope.$eval(attributes.ngSwipeLeft);
+      scope.$apply();
+    });
+  };
+});
+
+app.directive('ngSwipeRight', function() {
+  return function(scope, element, attributes) {
+    Hammer(element).on('swiperight', function() {
+      scope.$eval(attributes.ngSwipeRight);
+      scope.$apply();
+    });
+  };
+});

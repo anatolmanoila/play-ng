@@ -1,0 +1,19 @@
+<h2>{{pageTitle}}</h2>
+<div ng-init="counter=0" my-ng-click="counter = counter + 1">
+    Increment Counter: {{ counter }}
+</div>
+<hr>
+
+<section ng-controller="CarouselController">
+    <div style="height: 140px; width: 840px; border: 1px solid red;background-repeat: no-repeat;"
+        my-bg-image="images[currentIndex]"
+        hm-swipeleft="next()"
+        hm-swiperight="previous()">
+    </div>
+    <button class="btn btn-default" ng-click="previous()">Previous</button>
+    <button class="btn btn-default" ng-click="next()">Next</button>
+    <h3>Image index: {{ currentIndex }}</h3>
+</section>
+
+<hr>
+
