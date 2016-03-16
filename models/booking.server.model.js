@@ -16,5 +16,9 @@ var BookingSchema = new Schema({
     },
     created_on: Date
 });
+BookingSchema.virtual('id').get(function() {
+    'use strict';
+    return this._id;
+});
 var Booking = mongoose.model('Booking', BookingSchema);
 module.exports = Booking;

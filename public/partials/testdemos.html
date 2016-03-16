@@ -1,19 +1,35 @@
-<h2>{{pageTitle}}</h2>
-<div ng-init="counter=0" my-ng-click="counter = counter + 1">
-    Increment Counter: {{ counter }}
-</div>
-<hr>
-
-<section ng-controller="CarouselController">
-    <div style="height: 140px; width: 840px; border: 1px solid red;background-repeat: no-repeat;"
-        my-bg-image="images[currentIndex]"
-        hm-swipeleft="next()"
-        hm-swiperight="previous()">
+<section class="well">
+    <h4>Demo 1: Custom ng click</h4>
+    <div ng-init="counter=0" my-ng-click="counter = counter + 1">
+        Increment Counter: {{ counter }}
     </div>
-    <button class="btn btn-default" ng-click="previous()">Previous</button>
-    <button class="btn btn-default" ng-click="next()">Next</button>
-    <h3>Image index: {{ currentIndex }}</h3>
 </section>
 
-<hr>
+<section class="well">
+    <h4>Demo 2: Image Carousel</h4>
+    <aside ng-controller="ImagesController" ng-init="count = 0;">
+        <h4 class="text-info">Image has changed {{ count }} times. </h4>
+        <image-carousel images="defaultImages"
+             carousel-title="There are {{ defaultImages.length }} images."
+             on-change="count = count + 1">
+        </image-carousel>
+    </aside>
+</div>
+</section>
+
+<section class="well" ng-init="myName = 'Aema' ">
+    <h4>Demo 3a: transclude <i>:true</i> </h4>
+
+        <ng-greeting-a> Anatol </ng-greeting-a>
+        <br>
+        <ng-greeting-a> <b>{{ myName }}</b> {{ lastName }}</ng-greeting-a>
+
+    <hr>
+
+    <h4>Demo 3b: transclude <i>:'element'</i> </h4>
+        <ng-greeting-b>
+            Hi my name is {{ myName }}
+        </ng-greeting-b>
+
+</section>
 

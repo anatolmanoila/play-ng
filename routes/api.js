@@ -29,6 +29,7 @@ router.get('/bookings', function(req, res) {
 });
 
 router.post('/bookings/add', sessionCheck, function(req, res) {
+    var id = req.body._id;
     var booking = new Booking({
         text: req.body.text,
         start_date: req.body.start_date,

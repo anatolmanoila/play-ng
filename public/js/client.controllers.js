@@ -23,8 +23,11 @@ app.controller('HomeController', ['$scope', '$http', function( $scope, $http) {
     //to give it diferent functions based on success/failure
     $http.get('http://localhost:3000/api/bookings')
     .success(function(bookings) {
-        //$scope.bookings = bookings;
-        //console.log($scope.bookings);
+        $scope.bookings = bookings;
+        for (var i = bookings.length - 1; i >= 0; i--) {
+            $scope.bookings[i].id = bookings;
+        }
+        console.log($scope.bookings);
     })
     .error(function(err) {
       console.log('Look, an err happend. Promise not resolved. ');
@@ -43,20 +46,20 @@ app.controller('HomeController', ['$scope', '$http', function( $scope, $http) {
     console.log(new Date(start_hr).getHours());
     console.log(new Date(end_hr).getHours());
 
-    $scope.bookings = [
-    {
-        id:1,
-        text:"Meeting: Intro",
-        start_date: new Date(start_hr),
-        end_date: new Date(end_hr)
-    },
-    {
-        id:2,
-        text:"Meeting: Business rules",
-        start_date: new Date(2016, 2, 18 ),
-        end_date: new Date(2016, 2, 18 )
-    }
-    ];
+    // $scope.bookings = [
+    // {
+    //     id:1,
+    //     text:"Meeting: Intro",
+    //     start_date: new Date(start_hr),
+    //     end_date: new Date(end_hr)
+    // },
+    // {
+    //     id:2,
+    //     text:"Meeting: Business rules",
+    //     start_date: new Date(2016, 2, 18 ),
+    //     end_date: new Date(2016, 2, 18 )
+    // }
+    // ];
     //console.log($scope.bookings);
     $scope.scheduler = { date: new Date() };
 
@@ -113,20 +116,42 @@ app.controller('AddEditBookingController', ['$scope', function($scope) {
 app.controller('CarouselController', ['$scope', function( $scope) {
     'use strict';
 
-    $scope.images = [
+    $scope.currentIndex = 0;
+
+    $scope.next = function() {
+        var old = $scope.currentIndex;
+        $scope.currentIndex = ($scope.currentIndex + 1) % $scope.images.length;
+        if ($scope.currentIndex != old) {
+            $scope.onChange();
+        }
+    };
+
+    $scope.previous = function() {
+        var old = $scope.currentIndex;
+        $scope.currentIndex = $scope.currentIndex == 0 ? $scope.images.length - 1 : $scope.currentIndex - 1;
+        if ($scope.currentIndex != old) {
+            $scope.onChange();
+        }
+    };
+
+    $scope.disabled = true;
+
+    setInterval(function() {
+        if($scope.disabled) {
+            return;
+        }
+        $scope.next();
+        $scope.$apply();
+    }, 2000);
+}]);
+
+app.controller('ImagesController', ['$scope', function( $scope) {
+    'use strict';
+
+    $scope.defaultImages = [
         "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg",
         "https://upload.wikimedia.org/wikipedia/commons/b/b1/Meanstack-624x250.jpg",
         "https://upload.wikimedia.org/wikipedia/en/9/9e/JQuery_logo.svg",
         "https://upload.wikimedia.org/wikipedia/commons/7/76/Jaguar_Logo_Text.png"
     ];
-
-    $scope.currentIndex = 0;
-    $scope.next = function() {
-        $scope.currentIndex = ($scope.currentIndex + 1) % $scope.images.length;
-    };
-
-    $scope.previous = function() {
-        $scope.currentIndex = $scope.currentIndex == 0 ? $scope.images.length - 1 : $scope.currentIndex - 1;
-    };
-
 }]);

@@ -1,0 +1,12 @@
+<section>
+    <h3>{{carouselTitle}}</h3>
+    <div class="thumbnail" style="height: 140px; width: 840px; background-repeat: no-repeat;"
+         my-bg-image="images[currentIndex]"
+         hm-swipeleft="next()"
+         hm-swiperight="previous()">
+    </div>
+    <button class="btn btn-default" ng-click="previous()">Previous</button>
+    <button class="btn btn-default" ng-click="next()">Next</button>
+    <h3>Image index: {{ currentIndex }}</h3>
+    <input type="button" toggle-button="disabled">
+</section>
