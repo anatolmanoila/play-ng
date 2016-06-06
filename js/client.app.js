@@ -1,1 +1,1 @@
-var app = angular.module( 'weatherApp', ['ngRoute', 'ngResource', 'ngAnimate'] );
+var app = angular.module( 'app', ['ngRoute', 'ngResource', 'ngAnimate'] );

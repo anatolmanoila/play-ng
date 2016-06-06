@@ -8,20 +8,6 @@ app.controller('NavController', ['$scope','$location', '$routeParams', function(
     };
 }]);
 
-app.controller('LanguagesController', ['$scope', '$location', function( $scope, $location) {
-    $scope.languages = [
-        { name: 'English', greeting: 'Hello' },
-        { name: 'Spanish', greeting: 'Hola' },
-        { name: 'Romanian', greeting: 'Salut'}
-    ];
-
-    $scope.greet = function(language, name) {
-        return language.greeting + ' ' + language.name;
-    };
-}]);
-
-app.controller('HelloController', ['$scope', '$location', function( $scope, $location) {
-
-    $scope.username = '';
+app.controller('MainController', ['$scope', function( $scope ) {
 
 }]);
