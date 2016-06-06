@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="weatherApp">
+<head>
+    <meta charset="utf-8" />
+    <title>
+        Playing With NG
+    </title>
+    <link rel="stylesheet" href="lib/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css"></link>
+</head>
+<body ng-cloak>
+
+    <ng-include src="'templates/partials/_navbar.html'"></ng-include>
+
+    <section class="container-fluid" ng-view></section>
+
+    <!-- Load scripts. -->
+    <script type="text/javascript" src="lib/vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="lib/vendor/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/vendor/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="lib/vendor/angular-resource/angular-resource.min.js"></script>
+    <script src="js/client.app.js"></script>
+    <script src="js/client.routes.js"></script>
+    <script src="js/client.services.js"></script>
+    <script src="js/client.controllers.js"></script>
+    <script src="js/client.directives.js"></script>
+</body>
+</html>
